@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Irshad-infracloud4/irshadapup.git
     path: appu/custom-redis 
-    targetRevision: 18.10.0
+    targetRevision: main
     helm:
       valueFiles:
         - values.yaml
