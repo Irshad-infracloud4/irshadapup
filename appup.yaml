@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis
+  namespace: argocd
+spec:
+  destination:
+    namespace: redis
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: redis
+    targetRevision: latest
+    helm:
+      valueFiles:
+        - redis-values.yaml  # assumes your Git repo also has this file
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
