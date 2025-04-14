@@ -7,13 +7,13 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Irshad-infracloud4/irshadapup
-    targetRevision: main
     path: .
     helm:
       valueFiles:
         - redis-values.yaml
     chart: redis
     repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: latest
     
   destination:
     server: https://kubernetes.default.svc
