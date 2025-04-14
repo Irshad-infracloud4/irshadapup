@@ -1,5 +1,16 @@
-architecture: standalone
+architecture: replication
 auth:
   enabled: false
-replica:
+
+master:
+  persistence:
+    enabled: true
   replicaCount: 1
+  updateStrategy:
+    type: RollingUpdate
+
+replica:
+  persistence:
+    enabled: true
+  updateStrategy:
+    type: RollingUpdate
