@@ -13,7 +13,7 @@ spec:
         - redis-values.yaml
     chart: redis
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: latest
+    targetRevision: 18.1.0
     
   destination:
     server: https://kubernetes.default.svc
