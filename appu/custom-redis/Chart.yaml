@@ -3,5 +3,5 @@ name: custom-redis
 version: 0.1.0
 dependencies:
   - name: redis-app
-    version: 18.5.0         
+    version: 18.18.0        
     repository: https://charts.bitnami.com/bitnami
