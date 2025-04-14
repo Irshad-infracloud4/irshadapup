@@ -1,41 +1,17 @@
-replicaCount: 6  # Set replicas for both blue and green deployments
+# Default values for custom-redis.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 
-# Define Blue Deployment (current version)
-blue:
-  image:
-    repository: redis
-    pullPolicy: IfNotPresent
-    tag: "6.2.6"  # Example version for Blue deployment
-  service:
-    type: ClusterIP
-    port: 6379
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
+replicaCount: 6  # Ensuring that you have 6 replicas for high availability
 
-# Define Green Deployment (new version)
-green:
-  image:
-    repository: redis
-    pullPolicy: IfNotPresent
-    tag: "7.0.0"  # Example version for Green deployment
-  service:
-    type: ClusterIP
-    port: 6379
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
+image:
+  repository: redis  # Corrected to use Redis image repository
+  pullPolicy: IfNotPresent
+  tag: ""  # You can specify the version or leave it blank to use the default one
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-# Set common values for Redis
-image:
-  pullPolicy: IfNotPresent
-  tag: ""
 
 serviceAccount:
   create: true
@@ -43,23 +19,16 @@ serviceAccount:
   annotations: {}
   name: ""
 
-resources: {}
+podAnnotations: {}
+podLabels: {}
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
+podSecurityContext: {}
 
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+securityContext: {}
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
+service:
+  type: ClusterIP
+  port: 6379  # Redis default port
 
 ingress:
   enabled: false
@@ -71,3 +40,38 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
+
+resources: {}
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+volumes: []
+
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Adding rolling update strategy to ensure zero downtime
+deployment:
+  updateStrategy:
+    type: RollingUpdate  # Specifies that a rolling update strategy should be used
+    rollingUpdate:
+      maxUnavailable: 1  # Ensures that only one pod is unavailable at a time during the update
+      maxSurge: 1  # Ensures that at least one additional pod will be created during the update for high availability
