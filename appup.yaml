@@ -9,8 +9,9 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     chart: redis
     targetRevision: 18.18.0
-    valueFiles:
-      - https://raw.githubusercontent.com/Irshad-infracloud4/irshadapup/appu
+    helm:
+      valueFiles:
+        - https://github.com/Irshad-infracloud4/irshadapup/tree/main/appu
   destination:
     server: https://kubernetes.default.svc
     namespace: redis
