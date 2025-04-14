@@ -8,8 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: redis
-    targetRevision: 18.12.0
-    helm:
+    targetRevision: 18.18.0
       valueFiles:
         - https://raw.githubusercontent.com/Irshad-infracloud4/irshadapup/main/redis-values.yaml
   destination:
