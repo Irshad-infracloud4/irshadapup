@@ -10,7 +10,7 @@ spec:
     chart: redis
     targetRevision: 18.18.0
       valueFiles:
-        - https://raw.githubusercontent.com/Irshad-infracloud4/irshadapup/main/redis-values.yaml
+        - https://raw.githubusercontent.com/Irshad-infracloud4/irshadapup/
   destination:
     server: https://kubernetes.default.svc
     namespace: redis
