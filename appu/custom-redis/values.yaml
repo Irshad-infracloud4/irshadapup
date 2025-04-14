@@ -105,3 +105,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+image:
+  repository: redis
+  pullPolicy: IfNotPresent
+  tag: "7.0.0"   # <- Update the Redis version here
